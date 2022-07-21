@@ -9,6 +9,8 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
+  loadBalancerSourceRanges:
+    - 34.120.131.23/0
   ports:
     - port: {{ .Values.service.externalPort }}
       targetPort: {{ .Values.service.internalPort }}
@@ -17,3 +19,6 @@ spec:
   selector:
     app: {{ template "springboot-demoweb.name" . }}
     release: {{ .Release.Name }}
+
+
+
